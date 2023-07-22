@@ -9,9 +9,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/midu-dev/01-ejercicios-Lozmep.git"
+  },
   "keywords": [
     "nodejs"
   ],
-  "author": "lozmep",
-  "license": "MIT"
+  "author": "Lozmep",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/midu-dev/01-ejercicios-Lozmep/issues"
+  },
+  "homepage": "https://github.com/midu-dev/01-ejercicios-Lozmep#readme"
 }
