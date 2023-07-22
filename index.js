@@ -23,8 +23,8 @@ async function writeFile (filePath, data, callback) {
   }
     
   fs.writeFile(filePath, data)
-    .then(() => {
-      callback
+    .then((file) => {
+      callback('', file)
     })
     .catch(() => {
       console.log(`Error al crear el archivo: ${err}`)
@@ -34,6 +34,23 @@ async function writeFile (filePath, data, callback) {
 
 // Ejercicio 3
 async function readFileAndCount (word, callback) {
+  if (!word) {
+    callback('No se ha especificado la palabra a buscar')
+    process.exit(1)
+  }
+
+  const filePath = process.argv[2]
+  if (!filePath) {
+    callback('No se ha especificado el path del archivo')
+    process.exit(1)
+  }
+
+  try {
+    const content = await fs.readFile(filePath, 'utf-8')
+    callback('', content.split(' ').length)
+  } catch {
+    callback('', 0)
+  }  
 
 }
 
