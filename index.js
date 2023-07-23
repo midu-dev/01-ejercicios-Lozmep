@@ -18,38 +18,38 @@ async function writeFile (filePath, data, callback) {
       await fs.mkdir(dirName, { recursive: true })
     } catch(err) {
       console.log(`Error al crear el directorio: ${err}`)
-      process.exit(1)
+      callback(err)
     }
   }
     
   fs.writeFile(filePath, data)
     .then((file) => {
-      callback('', file)
+      callback(null, file)
     })
-    .catch(() => {
+    .catch((err) => {
       console.log(`Error al crear el archivo: ${err}`)
-      process.exit(1)
+      callback(err)
     })
 }
 
 // Ejercicio 3
 async function readFileAndCount (word, callback) {
   if (!word) {
-    callback('No se ha especificado la palabra a buscar')
-    process.exit(1)
+    const err = new Error('No se ha especificado la palabra a buscar')
+    return callback(err)
   }
 
   const filePath = process.argv[2]
   if (!filePath) {
-    callback('No se ha especificado el path del archivo')
-    process.exit(1)
+    const err = new Error('No se ha especificado el path del archivo')
+    return callback(err)
   }
 
   try {
     const content = await fs.readFile(filePath, 'utf-8')
-    callback('', content.split(' ').length)
+    callback(null, content.split(word).length-1)
   } catch {
-    callback('', 0)
+    callback(null, 0)
   }  
 
 }
