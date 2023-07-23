@@ -18,7 +18,7 @@ async function writeFile (filePath, data, callback) {
       await fs.mkdir(dirName, { recursive: true })
     } catch(err) {
       console.log(`Error al crear el directorio: ${err}`)
-      callback(err)
+      return callback(err)
     }
   }
     
